@@ -142,6 +142,7 @@ def dfs_util(problem, parentState, vis, parent,distance):
         return
 
     successorList = problem.getSuccessors(parentState)
+    successorList.reverse()
 
     for currentStateInfo in successorList:
         currentState = currentStateInfo[0]
