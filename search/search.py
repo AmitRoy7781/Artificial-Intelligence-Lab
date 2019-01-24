@@ -361,8 +361,119 @@ def nullHeuristic(state, problem=None):
 
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    startState = problem.getStartState()
+    global goalState
+    goalState = ""
+
+    queue = []
+    vis = {}
+    parent = {}
+    distance = {}
+
+
+    cost = 0 + heuristic(startState,problem);
+    queue.append((cost,startState))
+    heapq.heapify(queue)
+    distance[startState] = 0
+
+    while len(queue)!=0:
+
+        parentStateInfo = heapq.heappop(queue)
+        parentState = parentStateInfo[1]
+
+        if problem.isGoalState(parentState):
+            goalState = parentState
+            break
+
+
+        if parentState not in vis.keys():
+            vis[parentState] = 1
+
+            successorList = problem.getSuccessors(parentState)
+            for currentStateInfo in successorList:
+                currentState = currentStateInfo[0]
+                currentStateCost = currentStateInfo[2]
+
+                if currentState not in distance.keys() or (distance[currentState] > distance[parentState] + currentStateCost):
+                    distance[currentState] = distance[parentState] + currentStateCost
+                    parent[currentState] = [parentState]
+                    parent[currentState] += currentStateInfo
+                    heapq.heappush(queue, (distance[currentState]+heuristic(currentState,problem),currentState))
+
+    moves = []
+    while True:
+        if goalState is startState:
+            break
+
+        parentState = parent[goalState]
+
+        goalState = parentState[0]
+        moves.append(parentState[2])
+
+    moves.reverse()
+    # print(moves)
+    return moves
+
+def greedyBestFirstSearch(problem,heuristic):
+    
+    startState = problem.getStartState()
+    global goalState
+    goalState = ""
+
+    queue = []
+    vis = {}
+    parent = {}
+
+
+    startStateCost = heuristic(startState,problem);
+    queue.append((startStateCost,startState))
+    heapq.heapify(queue)
+
+    while len(queue)!=0:
+
+
+        parentStateInfo = heapq.heappop(queue)
+        parentState = parentStateInfo[1]
+
+
+        if problem.isGoalState(parentState):
+            goalState = parentState
+            break
+
+
+        if parentState not in vis.keys():
+            vis[parentState] = 1
+
+
+
+            successorList = problem.getSuccessors(parentState)
+            for currentStateInfo in successorList:
+
+
+                currentState = currentStateInfo[0]
+                currentStateCost = heuristic(currentState,problem)
+
+                if currentState not in vis.keys():
+                    parent[currentState] = [parentState]
+                    parent[currentState] += currentStateInfo
+                    heapq.heappush(queue, (currentStateCost,currentState))
+
+    moves = []
+    global goal_found
+    print(goal_found)
+    while True:
+        if goalState is startState:
+            break
+
+        parentState = parent[goalState]
+
+        goalState = parentState[0]
+        moves.append(parentState[2])
+
+    moves.reverse()
+    # print(moves)
+    return moves
+
 
 
 # Abbreviations
