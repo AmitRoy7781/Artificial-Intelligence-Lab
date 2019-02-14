@@ -106,12 +106,12 @@ def depthFirstSearch(problem):
     global goalState
     global goal_found
 
-    goalState  = ""
+    goalState = ""
     goal_found = False
 
     distance[startState] = 0
 
-    dfs_util(problem, startState, vis, parent,distance)
+    dfs_util(problem, startState, vis, parent, distance)
 
     moves = []
     while True:
@@ -119,18 +119,17 @@ def depthFirstSearch(problem):
         if goalState not in parent.keys():
             break
 
-
         parentState = parent[goalState]
 
         goalState = parentState[0]
         moves.append(parentState[2])
 
     moves.reverse()
-    #print(moves)
+    # print(moves)
     return moves
 
 
-def dfs_util(problem, parentState, vis, parent,distance):
+def dfs_util(problem, parentState, vis, parent, distance):
     vis[parentState] = 1
     if problem.isGoalState(parentState):
         global goalState
@@ -152,7 +151,7 @@ def dfs_util(problem, parentState, vis, parent,distance):
             distance[currentState] = distance[parentState] + currentStateCost
             parent[currentState] = [parentState]
             parent[currentState] += currentStateInfo
-            dfs_util(problem, currentState,vis,parent,distance)
+            dfs_util(problem, currentState, vis, parent, distance)
 
         global goal_found
 
@@ -173,9 +172,6 @@ def breadthFirstSearch(problem):
     queue.append(startState)
     vis[startState] = True
     distance[startState] = 0
-
-
-
 
     while len(queue) is not 0:
         parentState = queue[0]
@@ -198,7 +194,6 @@ def breadthFirstSearch(problem):
                 parent[currentState] = [parentState]
                 parent[currentState] += currentStateInfo
 
-
     moves = []
     while True:
         if goalState is startState:
@@ -219,44 +214,38 @@ def uniformCostSearch(problem):
     "*** YOUR CODE HERE ***"
 
     startState = problem.getStartState()
-    global goalState
-    goalState = ""
 
-    queue = []
-    vis = {}
+    queue = util.PriorityQueue()
     parent = {}
     distance = {}
 
-    queue.append((0,startState))
-    heapq.heapify(queue)
+    queue.push(startState,0)
     distance[startState] = 0
 
-    while len(queue)!=0:
+    while not queue.isEmpty():
 
-        parentStateInfo = heapq.heappop(queue)
-
-        parentStateCost = parentStateInfo[0]
-        parentState = parentStateInfo[1]
+        parentState = queue.pop()
 
 
         if problem.isGoalState(parentState):
             goalState = parentState
             break
 
+        successorList = problem.getSuccessors(parentState)
+        for currentStateInfo in successorList:
+            currentState = currentStateInfo[0]
+            currentStateCost = currentStateInfo[2]
 
-        if parentState not in vis.keys():
-            vis[parentState] = 1
-
-            successorList = problem.getSuccessors(parentState)
-            for currentStateInfo in successorList:
-                currentState = currentStateInfo[0]
-                currentStateCost = currentStateInfo[2]
-
-                if currentState not in distance.keys() or (distance[currentState] > parentStateCost + currentStateCost):
-                    distance[currentState] = parentStateCost + currentStateCost
-                    parent[currentState] = [parentState]
-                    parent[currentState] += currentStateInfo
-                    heapq.heappush(queue, (distance[currentState],currentState))
+            if currentState not in distance.keys():
+                distance[currentState] = distance[parentState] + currentStateCost
+                parent[currentState] = [parentState]
+                parent[currentState] += currentStateInfo
+                queue.push(currentState,distance[currentState])
+            elif(distance[currentState] > distance[parentState] + currentStateCost):
+                distance[currentState] = distance[parentState] + currentStateCost
+                parent[currentState] = [parentState]
+                parent[currentState] += currentStateInfo
+                queue.push(currentState, distance[currentState])
 
     moves = []
     while True:
@@ -272,8 +261,8 @@ def uniformCostSearch(problem):
     # print(moves)
     return moves
 
-def iterativeDeepeningSearch(problem):
 
+def iterativeDeepeningSearch(problem):
     startState = problem.getStartState()
 
     global goalState
@@ -284,15 +273,13 @@ def iterativeDeepeningSearch(problem):
     goal_found = False
     maxDepth = 1
 
-
     while goal_found is False:
-
         vis = {}
         parent = {}
         distance = {}
         distance[startState] = 0
 
-        ids_dfs_util(problem, startState, vis, parent, distance,0)
+        ids_dfs_util(problem, startState, vis, parent, distance, 0)
 
         maxDepth += 1
 
@@ -308,16 +295,14 @@ def iterativeDeepeningSearch(problem):
         moves.append(parentState[2])
 
     moves.reverse()
-    #print(moves)
+    # print(moves)
     return moves
 
 
-def ids_dfs_util(problem, parentState, vis, parent,distance,depth):
-
-
+def ids_dfs_util(problem, parentState, vis, parent, distance, depth):
     global maxDepth
 
-    if depth> maxDepth:
+    if depth > maxDepth:
         return
 
     vis[parentState] = 1
@@ -341,14 +326,12 @@ def ids_dfs_util(problem, parentState, vis, parent,distance,depth):
             distance[currentState] = distance[parentState] + currentStateCost
             parent[currentState] = [parentState]
             parent[currentState] += currentStateInfo
-            ids_dfs_util(problem, currentState,vis,parent,distance,depth+1)
+            ids_dfs_util(problem, currentState, vis, parent, distance, depth + 1)
 
             global goal_found
 
             if goal_found is True:
                 return
-
-
 
 
 def nullHeuristic(state, problem=None):
@@ -362,43 +345,37 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     startState = problem.getStartState()
-    global goalState
-    goalState = ""
 
-    queue = []
-    vis = {}
+    queue = util.PriorityQueue()
     parent = {}
     distance = {}
 
-
-    cost = 0 + heuristic(startState,problem);
-    queue.append((cost,startState))
-    heapq.heapify(queue)
+    queue.push(startState, 0+heuristic(startState,problem))
     distance[startState] = 0
 
-    while len(queue)!=0:
+    while not queue.isEmpty():
 
-        parentStateInfo = heapq.heappop(queue)
-        parentState = parentStateInfo[1]
+        parentState = queue.pop()
 
         if problem.isGoalState(parentState):
             goalState = parentState
             break
 
+        successorList = problem.getSuccessors(parentState)
+        for currentStateInfo in successorList:
+            currentState = currentStateInfo[0]
+            currentStateCost = currentStateInfo[2]
 
-        if parentState not in vis.keys():
-            vis[parentState] = 1
-
-            successorList = problem.getSuccessors(parentState)
-            for currentStateInfo in successorList:
-                currentState = currentStateInfo[0]
-                currentStateCost = currentStateInfo[2]
-
-                if currentState not in distance.keys() or (distance[currentState] > distance[parentState] + currentStateCost):
-                    distance[currentState] = distance[parentState] + currentStateCost
-                    parent[currentState] = [parentState]
-                    parent[currentState] += currentStateInfo
-                    heapq.heappush(queue, (distance[currentState]+heuristic(currentState,problem),currentState))
+            if currentState not in distance.keys():
+                distance[currentState] = distance[parentState] + currentStateCost
+                parent[currentState] = [parentState]
+                parent[currentState] += currentStateInfo
+                queue.push(currentState, distance[currentState]+heuristic(currentState,problem))
+            elif (distance[currentState] > distance[parentState] + currentStateCost):
+                distance[currentState] = distance[parentState] + currentStateCost
+                parent[currentState] = [parentState]
+                parent[currentState] += currentStateInfo
+                queue.push(currentState, distance[currentState]+heuristic(currentState,problem))
 
     moves = []
     while True:
@@ -414,53 +391,39 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     # print(moves)
     return moves
 
-def greedyBestFirstSearch(problem,heuristic):
-    
+
+def greedyBestFirstSearch(problem, heuristic):
+    """Search the node that has the lowest combined cost and heuristic first."""
     startState = problem.getStartState()
-    global goalState
-    goalState = ""
 
-    queue = []
-    vis = {}
+    queue = util.PriorityQueue()
     parent = {}
+    distance = {}
 
+    queue.push(startState, 0 + heuristic(startState, problem))
+    distance[startState] = 0
 
-    startStateCost = heuristic(startState,problem);
-    queue.append((startStateCost,startState))
-    heapq.heapify(queue)
+    while not queue.isEmpty():
 
-    while len(queue)!=0:
-
-
-        parentStateInfo = heapq.heappop(queue)
-        parentState = parentStateInfo[1]
-
+        parentState = queue.pop()
 
         if problem.isGoalState(parentState):
             goalState = parentState
             break
 
+        successorList = problem.getSuccessors(parentState)
+        for currentStateInfo in successorList:
+            currentState = currentStateInfo[0]
+            currentStateCost = currentStateInfo[2]
 
-        if parentState not in vis.keys():
-            vis[parentState] = 1
+            if currentState not in distance.keys():
+                distance[currentState] = distance[parentState] + currentStateCost
+                parent[currentState] = [parentState]
+                parent[currentState] += currentStateInfo
+                queue.push(currentState,heuristic(currentState, problem))
 
-
-
-            successorList = problem.getSuccessors(parentState)
-            for currentStateInfo in successorList:
-
-
-                currentState = currentStateInfo[0]
-                currentStateCost = heuristic(currentState,problem)
-
-                if currentState not in vis.keys():
-                    parent[currentState] = [parentState]
-                    parent[currentState] += currentStateInfo
-                    heapq.heappush(queue, (currentStateCost,currentState))
 
     moves = []
-    global goal_found
-    print(goal_found)
     while True:
         if goalState is startState:
             break
@@ -473,7 +436,6 @@ def greedyBestFirstSearch(problem,heuristic):
     moves.reverse()
     # print(moves)
     return moves
-
 
 
 # Abbreviations
