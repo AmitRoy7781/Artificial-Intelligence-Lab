@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{cellspace}%
+\usepackage{booktabs}
+\usepackage{makecell}
+\setcellgapes{3pt}
+\usepackage{amsmath}
+\usepackage{caption}
+
+\newcommand{\tsone}{\fontencoding{TS1}\selectfont}
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+
+\newcommand{\mysection}[2]{\setcounter{section}{#1}\addtocounter{section}{-1}\section{Problem Statement}}
+
+\begin{document}
+	
+	\section{Problem}
+\begin{table}[h]\centering\captionof{table}{Tableau}
+	\tiny
+	\begin{tabular}{|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|} \hline
+		Z & x1 & x2 & x3 & x4 & S1 & S2 & S3 & S4 & A1 & A2 & A3 & A4 & RHS & Basic Solution & minratio \\ \midrule
+		1 & -8M-16 & -36 & 8M-64 & -18M-324 & M & 0 & M & 0 & 0 & 0 & 0 & 0 & 0 & Z = 0 & minratio \\ \midrule
+		0 & 4 & -6 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & A1 = 0 & - \\ \midrule
+		0 & 0 & 6 & -8 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & A2 = 0 & - \\ \midrule
+		0 & 4 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 2 & A3 = 2 & - \\ \midrule
+		0 & 4 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 10 & S2 = 10 & - \\ \midrule
+		0 & 0 & 0 & 0 & (18) & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 1 & 2 & A4 = 2 & \text{2/18=0.1111} \\ \midrule
+		0 & 0 & 0 & 0 & 18 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 10 & S4 = 10 & \text{10/18=0.5556} \\ \midrule
+\end{tabular}\end{table}
+	
+	\textbf{\textit{Descriptive statistics of your k=4 independent treatments:}}
+	\begin{table}[ht]
+		\large
+		\begin{tabular}{|l|l|l|l|l|l|}
+			\hline
+			Treatment    $\to$                                                                   & AC1        & AC2         & AC3        & AC4          & Pooled Total \\ \hline
+			observations N                                                                  & 101        & 101         & 101        & 101          & 404          \\ \hline
+			sum $\sum$ \textit{x$ _{i} $}                         & 961.4854   & 1,117.2210  & 650.8736   & 4,131.0253   & 6,860.6053   \\ \hline
+			mean $\overline{x}$  & 9.5197     & 11.0616     & 6.4443     & 40.9012      & 16.9817      \\ \hline
+			sum of squares $\sum$ \textit{x$ _{i} ^{2} $}               & 9,195.8574 & 12,393.0952 & 4,201.5039 & 169,963.7484 & 195,754.2049 \\ \hline
+			sample variance \textit{s$^{2} $} & 0.4285     & 0.3485      & 0.0708     & 9.9969       & 196.6489     \\ \hline
+			sample std. dev. \textit{s}                                                              & 0.6546     & 0.5903      & 0.2662     & 3.1618       & 14.0232      \\ \hline
+			std. dev. of mean \textit{SE$ _{\overline{x}}$}               & 0.0651     & 0.0587      & 0.0265     & 0.3146       & 0.6977       \\ \hline
+		\end{tabular}
+	\end{table}
+
+	\textbf{\textit{Tukey HSD results}}
+	\begin{table}[ht]
+		\large
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			 \text{Treatments  \newline  Pair} & Tukey HSD Q statistic & Tukey HSD  p-value & Tukey HSD  inferfence \\ \hline
+			AC1 vs AC2                                                 & 9.4113                                                           & 0.0010053                                                    & ** p\textless{}0.01                                             \\ \hline
+			AC1 vs AC3                                                 & 18.7706                                                          & 0.0010053                                                    & ** p\textless{}0.01                                             \\ \hline
+			AC1 vs AC4                                                 & 191.5389                                                         & 0.0010053                                                    & ** p\textless{}0.01                                             \\ \hline
+			AC2 vs AC3                                                 & 28.1819                                                          & 0.0010053                                                    & ** p\textless{}0.01                                             \\ \hline
+			AC2 vs AC4                                                 & 182.1276                                                         & 0.0010053                                                    & ** p\textless{}0.01                                             \\ \hline
+			AC3 vs AC4                                                 & 210.3095                                                         & 0.0010053                                                    & ** p\textless{}0.01                                             \\ \hline
+		\end{tabular}
+	\end{table}
+\end{document}

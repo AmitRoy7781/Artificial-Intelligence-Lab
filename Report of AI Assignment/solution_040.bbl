@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+
+\bibitem{DUMMY:1}
+A.~K. Mackworth, ``Consistency in networks of relations,'' vol.~8, pp.~99--118,
+  Elsevier, 1977.
+
+\bibitem{DUMMY:2}
+M.~Arang{\'u} and M.~Salido, ``A fine-grained arc-consistency algorithm for
+  non-normalized constraint satisfaction problems,'' {\em International Journal
+  of Applied Mathematics and Computer Science}, vol.~21, no.~4, pp.~733--744,
+  2011.
+
+\bibitem{DUMMY:3}
+R.~J. Wallace, ``Why ac-3 is almost always better than ac-4 for establishing
+  arc consistency in csps,'' in {\em IJCAI}, vol.~93, pp.~239--245, Citeseer,
+  1993.
+
+\end{thebibliography}

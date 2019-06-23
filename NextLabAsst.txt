@@ -1,0 +1,4 @@
+
+project2: task2 and task3
+
+minmax and alpha beta pruning

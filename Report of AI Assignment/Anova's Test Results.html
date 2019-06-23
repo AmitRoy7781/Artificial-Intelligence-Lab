@@ -1,0 +1,1396 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="content-language" content="en-us">
+  <meta name="description" content="One-way ANOVA with post-hoc Tukey HSD Calculator
+for multiple comparison">
+  <meta name="author" content="Navendu Vasavada">
+<title>ANOVA with post-hoc Tukey HSD Test Calculator with Scheffé and
+  Bonferroni multiple comparison - Results</title>
+  <script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2610595-10', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  <style type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+<!--
+body {
+font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+background: #42413C;
+margin: 0;
+padding: 0;
+color: #000;
+}
+
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+padding: 0;
+margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+margin-top: 0; /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+padding-right: 15px;
+padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+/*color: #42413C; */
+color:blue;
+text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+color: #6E6C64;
+text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+text-decoration: none;
+}
+
+/* ~~ this fixed width container surrounds all other elements ~~ */
+ .container {
+width: 960px;
+background: #FFFFCC;
+margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+
+/* ~~ This is the layout information. ~~
+
+1) Padding is only placed on the top and/or bottom of the div. The elements within this div have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
+
+*/
+ .content {
+
+padding: 10px 0;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+ .fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+float: right;
+margin-left: 8px;
+}
+ .fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+float: left;
+margin-right: 8px;
+}
+ .clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the overflow:hidden on the .container is removed */
+clear:both;
+height:0;
+font-size: 1px;
+line-height: 0px;
+}
+-->
+
+table
+{
+border-collapse:collapse;
+}
+table, th, td
+{
+border:1px solid black;
+}
+td
+{
+padding:10px;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="content">
+<h1>One-way ANOVA with post-hoc Tukey HSD Test Calculator</h1>
+
+<h2>.....with Scheffé, Bonferroni and Holm multiple comparison calculation also
+provided </h2>
+<div style="border:2px dotted red;">
+<p> </p>
+
+<h3><i>Your input data on \(k\)=4 independent treatments:</i></h3>
+
+<table border="1">
+  <thead>
+    <tr>
+      <td>Treatment → </td>
+       <td style="text-align:center">A </td>
+       <td style="text-align:center">B </td>
+       <td style="text-align:center">C </td>
+       <td style="text-align:center">D </td>
+       </tr>
+ </thead>
+<tbody>
+   <tr>
+      <td>Input Data → </td>
+       <td> 9.337019920349121 <br />
+         9.625077247619629 <br />
+         9.296083450317383 <br />
+         9.819626808166504 <br />
+         9.74433422088623 <br />
+         9.364748001098633 <br />
+         9.649920463562012 <br />
+         9.570479393005371 <br />
+         9.59169864654541 <br />
+         9.530901908874512 <br />
+         11.052918434143066 <br />
+         10.870194435119629 <br />
+         10.850119590759277 <br />
+         11.150097846984863 <br />
+         11.34946346282959 <br />
+         11.273837089538574 <br />
+         11.141324043273926 <br />
+         10.685038566589355 <br />
+         10.988116264343262 <br />
+         10.806512832641602 <br />
+         11.001276969909668 <br />
+         10.5682373046875 <br />
+         9.982848167419434 <br />
+         9.327292442321777 <br />
+         9.664034843444824 <br />
+         9.983515739440918 <br />
+         9.852957725524902 <br />
+         9.880208969116211 <br />
+         9.756040573120117 <br />
+         9.77015495300293 <br />
+         9.725451469421387 <br />
+         9.59630012512207 <br />
+         9.833931922912598 <br />
+         9.800148010253906 <br />
+         9.888768196105957 <br />
+         9.862017631530762 <br />
+         9.718656539916992 <br />
+         9.91063117980957 <br />
+         9.710311889648438 <br />
+         9.8860502243042 <br />
+         9.986066818237305 <br />
+         9.921979904174805 <br />
+         9.7900390625 <br />
+         10.220766067504883 <br />
+         9.6907377243042 <br />
+         9.736084938049316 <br />
+         9.22250747680664 <br />
+         9.485387802124023 <br />
+         9.272313117980957 <br />
+         9.565114974975586 <br />
+         9.550285339355469 <br />
+         9.15989875793457 <br />
+         9.343504905700684 <br />
+         9.13097858428955 <br />
+         8.825826644897461 <br />
+         9.109950065612793 <br />
+         9.128785133361816 <br />
+         9.157586097717285 <br />
+         9.015226364135742 <br />
+         9.30635929107666 <br />
+         9.242796897888184 <br />
+         9.296512603759766 <br />
+         9.052586555480957 <br />
+         9.282445907592773 <br />
+         8.917403221130371 <br />
+         9.026718139648438 <br />
+         8.832693099975586 <br />
+         8.884811401367188 <br />
+         9.307551383972168 <br />
+         8.930182456970215 <br />
+         9.013199806213379 <br />
+         9.053564071655273 <br />
+         8.948755264282227 <br />
+         8.980059623718262 <br />
+         9.098505973815918 <br />
+         9.167742729187012 <br />
+         8.984565734863281 <br />
+         9.1888427734375 <br />
+         8.945107460021973 <br />
+         8.924221992492676 <br />
+         9.04853343963623 <br />
+         8.92951488494873 <br />
+         9.138083457946777 <br />
+         9.015226364135742 <br />
+         9.236645698547363 <br />
+         9.15522575378418 <br />
+         9.045052528381348 <br />
+         8.984804153442383 <br />
+         9.471416473388672 <br />
+         8.82251262664795 <br />
+         8.901810646057129 <br />
+         8.650994300842285 <br />
+         8.950519561767578 <br />
+         8.714771270751953 <br />
+         8.606672286987305 <br />
+         8.684158325195312 <br />
+         8.88683795928955 <br />
+         8.76624584197998 <br />
+         9.017515182495117 <br />
+         9.15825366973877 <br />
+         9.186577796936035 <br />
+         </td>
+       <td> 10.254430770874023 <br />
+         9.742474555969238 <br />
+         9.561443328857422 <br />
+         10.010313987731934 <br />
+         9.783720970153809 <br />
+         10.060882568359375 <br />
+         10.16237735748291 <br />
+         10.129809379577637 <br />
+         9.953522682189941 <br />
+         10.078692436218262 <br />
+         11.757349967956543 <br />
+         11.429429054260254 <br />
+         11.703777313232422 <br />
+         11.877846717834473 <br />
+         11.729979515075684 <br />
+         11.804890632629395 <br />
+         11.610674858093262 <br />
+         11.678886413574219 <br />
+         11.733365058898926 <br />
+         11.667370796203613 <br />
+         11.670827865600586 <br />
+         11.0243558883667 <br />
+         10.172772407531738 <br />
+         10.574197769165039 <br />
+         10.530781745910645 <br />
+         10.626220703125 <br />
+         10.27991771697998 <br />
+         10.550594329833984 <br />
+         10.561060905456543 <br />
+         10.505151748657227 <br />
+         10.271906852722168 <br />
+         10.390162467956543 <br />
+         10.446333885192871 <br />
+         10.660195350646973 <br />
+         10.438060760498047 <br />
+         10.786008834838867 <br />
+         10.74988842010498 <br />
+         10.54832935333252 <br />
+         10.699295997619629 <br />
+         10.67662239074707 <br />
+         11.118578910827637 <br />
+         10.441350936889648 <br />
+         10.732316970825195 <br />
+         10.936975479125977 <br />
+         10.767078399658203 <br />
+         10.98792552947998 <br />
+         11.102938652038574 <br />
+         11.150288581848145 <br />
+         10.924530029296875 <br />
+         11.025810241699219 <br />
+         11.1372709274292 <br />
+         11.324143409729004 <br />
+         10.646772384643555 <br />
+         10.648059844970703 <br />
+         10.69495677947998 <br />
+         10.692763328552246 <br />
+         10.822200775146484 <br />
+         10.987329483032227 <br />
+         10.796642303466797 <br />
+         11.22286319732666 <br />
+         10.891103744506836 <br />
+         10.84280014038086 <br />
+         10.905075073242188 <br />
+         10.954666137695312 <br />
+         11.200666427612305 <br />
+         11.129927635192871 <br />
+         11.175274848937988 <br />
+         11.349916458129883 <br />
+         11.20455265045166 <br />
+         11.186718940734863 <br />
+         11.317968368530273 <br />
+         11.245894432067871 <br />
+         11.21666431427002 <br />
+         11.287903785705566 <br />
+         11.313509941101074 <br />
+         11.347508430480957 <br />
+         11.555051803588867 <br />
+         11.372947692871094 <br />
+         11.6607666015625 <br />
+         11.493921279907227 <br />
+         11.43190860748291 <br />
+         11.420083045959473 <br />
+         11.666727066040039 <br />
+         11.410236358642578 <br />
+         11.282491683959961 <br />
+         11.434483528137207 <br />
+         11.754488945007324 <br />
+         11.7323637008667 <br />
+         12.070679664611816 <br />
+         11.528182029724121 <br />
+         11.898326873779297 <br />
+         11.67590618133545 <br />
+         11.738801002502441 <br />
+         11.426949501037598 <br />
+         11.76764965057373 <br />
+         11.599469184875488 <br />
+         11.759328842163086 <br />
+         11.947107315063477 <br />
+         12.007951736450195 <br />
+         11.95516586303711 <br />
+         12.005162239074707 <br />
+         </td>
+       <td> 6.092739105224609 <br />
+         6.026625633239746 <br />
+         5.885481834411621 <br />
+         6.2735795974731445 <br />
+         5.951499938964844 <br />
+         6.058263778686523 <br />
+         6.056666374206543 <br />
+         6.258487701416016 <br />
+         6.1531782150268555 <br />
+         6.043791770935059 <br />
+         6.809353828430176 <br />
+         6.766152381896973 <br />
+         6.896471977233887 <br />
+         7.029914855957031 <br />
+         6.841850280761719 <br />
+         6.978416442871094 <br />
+         6.948065757751465 <br />
+         6.805229187011719 <br />
+         6.813335418701172 <br />
+         6.958580017089844 <br />
+         6.926059722900391 <br />
+         6.592369079589844 <br />
+         6.1531782150268555 <br />
+         6.3599348068237305 <br />
+         6.360936164855957 <br />
+         6.1855316162109375 <br />
+         6.107187271118164 <br />
+         6.069087982177734 <br />
+         6.096887588500977 <br />
+         6.149721145629883 <br />
+         6.083893775939941 <br />
+         6.342601776123047 <br />
+         6.15239143371582 <br />
+         6.242012977600098 <br />
+         6.296849250793457 <br />
+         6.143951416015625 <br />
+         6.197834014892578 <br />
+         6.129765510559082 <br />
+         6.169986724853516 <br />
+         6.162905693054199 <br />
+         6.207180023193359 <br />
+         6.167483329772949 <br />
+         6.209707260131836 <br />
+         6.208181381225586 <br />
+         6.253623962402344 <br />
+         6.341266632080078 <br />
+         6.249856948852539 <br />
+         6.279230117797852 <br />
+         6.386232376098633 <br />
+         6.198835372924805 <br />
+         6.330513954162598 <br />
+         6.274294853210449 <br />
+         6.412100791931152 <br />
+         6.365156173706055 <br />
+         6.673550605773926 <br />
+         6.332993507385254 <br />
+         6.353306770324707 <br />
+         6.389522552490234 <br />
+         6.3549041748046875 <br />
+         6.511259078979492 <br />
+         6.4762115478515625 <br />
+         6.450414657592773 <br />
+         6.434798240661621 <br />
+         6.474399566650391 <br />
+         6.4476728439331055 <br />
+         6.596803665161133 <br />
+         6.451249122619629 <br />
+         6.438565254211426 <br />
+         6.542706489562988 <br />
+         6.4070940017700195 <br />
+         6.476426124572754 <br />
+         6.419801712036133 <br />
+         6.597590446472168 <br />
+         6.556916236877441 <br />
+         6.5459489822387695 <br />
+         6.634521484375 <br />
+         6.493067741394043 <br />
+         6.556940078735352 <br />
+         6.487369537353516 <br />
+         6.506586074829102 <br />
+         6.543087959289551 <br />
+         6.568169593811035 <br />
+         6.578421592712402 <br />
+         6.47730827331543 <br />
+         6.507444381713867 <br />
+         6.534409523010254 <br />
+         6.758451461791992 <br />
+         6.604552268981934 <br />
+         6.857609748840332 <br />
+         6.562089920043945 <br />
+         6.764936447143555 <br />
+         6.592559814453125 <br />
+         6.6692352294921875 <br />
+         6.661224365234375 <br />
+         6.575608253479004 <br />
+         6.573820114135742 <br />
+         6.668519973754883 <br />
+         6.658840179443359 <br />
+         6.7229509353637695 <br />
+         6.958937644958496 <br />
+         6.970357894897461 <br />
+         </td>
+       <td> 36.09960079193115 <br />
+         46.459317207336426 <br />
+         40.125203132629395 <br />
+         38.6744499206543 <br />
+         37.297821044921875 <br />
+         37.37483024597168 <br />
+         38.67146968841553 <br />
+         46.16386890411377 <br />
+         38.965797424316406 <br />
+         38.46144676208496 <br />
+         43.08426380157471 <br />
+         43.7791109085083 <br />
+         44.57242488861084 <br />
+         53.281354904174805 <br />
+         43.82967948913574 <br />
+         43.700551986694336 <br />
+         44.206809997558594 <br />
+         45.1871395111084 <br />
+         43.87707710266113 <br />
+         43.717241287231445 <br />
+         51.66442394256592 <br />
+         43.413543701171875 <br />
+         39.7740364074707 <br />
+         38.712143898010254 <br />
+         38.42360973358154 <br />
+         40.00139236450195 <br />
+         46.947312355041504 <br />
+         39.94858264923096 <br />
+         38.181424140930176 <br />
+         39.287710189819336 <br />
+         38.59827518463135 <br />
+         38.883018493652344 <br />
+         46.96693420410156 <br />
+         39.00113105773926 <br />
+         39.31097984313965 <br />
+         39.698171615600586 <br />
+         38.2906436920166 <br />
+         40.84615707397461 <br />
+         45.25465965270996 <br />
+         39.45431709289551 <br />
+         40.78803062438965 <br />
+         40.03798961639404 <br />
+         39.79237079620361 <br />
+         39.82596397399902 <br />
+         46.61211967468262 <br />
+         39.943552017211914 <br />
+         37.9345178604126 <br />
+         39.64560031890869 <br />
+         40.31829833984375 <br />
+         40.57009220123291 <br />
+         39.4376277923584 <br />
+         44.808244705200195 <br />
+         39.62972164154053 <br />
+         38.6260986328125 <br />
+         37.9152774810791 <br />
+         38.66391181945801 <br />
+         38.88108730316162 <br />
+         38.407230377197266 <br />
+         44.770169258117676 <br />
+         39.41764831542969 <br />
+         39.5587682723999 <br />
+         39.783525466918945 <br />
+         38.60199451446533 <br />
+         39.54026699066162 <br />
+         38.67762088775635 <br />
+         46.21579647064209 <br />
+         37.90590763092041 <br />
+         37.663888931274414 <br />
+         41.000986099243164 <br />
+         38.999104499816895 <br />
+         38.704824447631836 <br />
+         39.14062976837158 <br />
+         45.64566612243652 <br />
+         38.94219398498535 <br />
+         39.838337898254395 <br />
+         41.016411781311035 <br />
+         38.82648944854736 <br />
+         39.33866024017334 <br />
+         39.259886741638184 <br />
+         38.36057186126709 <br />
+         47.59528636932373 <br />
+         39.02146816253662 <br />
+         39.29474353790283 <br />
+         39.35494422912598 <br />
+         40.23458957672119 <br />
+         39.8606538772583 <br />
+         39.19873237609863 <br />
+         46.53003215789795 <br />
+         41.07975959777832 <br />
+         38.80350589752197 <br />
+         40.7747745513916 <br />
+         39.46504592895508 <br />
+         39.82377052307129 <br />
+         38.83638381958008 <br />
+         38.90573978424072 <br />
+         46.08733654022217 <br />
+         40.49806594848633 <br />
+         39.804816246032715 <br />
+         40.209031105041504 <br />
+         41.80777072906494 <br />
+         40.60382843017578 <br />
+         </td>
+       </tr>
+  </tbody>
+</table>
+<br/><p/>
+<h3><i>Descriptive statistics of your \(k\)=4 independent treatments:</i></h3>
+<table border="1">
+  <thead>
+    <tr>
+      <td>Treatment → </td>
+       <td style="text-align:center">A </td>
+       <td style="text-align:center">B </td>
+       <td style="text-align:center">C </td>
+       <td style="text-align:center">D </td>
+       <td style="text-align:center">Pooled Total </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>observations N </td>
+       <td style="text-align:center">101</td>
+       <td style="text-align:center">101</td>
+       <td style="text-align:center">101</td>
+       <td style="text-align:center">101</td>
+       <td style="text-align:center">404</td>
+       </tr>
+    <tr>
+      <td>sum \(\sum {x_i} \) </td>
+       <td style="text-align:right">961.4854</td>
+       <td style="text-align:right">1,117.2210</td>
+       <td style="text-align:right">650.8736</td>
+       <td style="text-align:right">4,131.0253</td>
+       <td style="text-align:right">6,860.6053</td>
+       </tr>
+    <tr>
+      <td>mean \(\bar x\)</td>
+       <td style="text-align:right">9.5197</td>
+       <td style="text-align:right">11.0616</td>
+       <td style="text-align:right">6.4443</td>
+       <td style="text-align:right">40.9012</td>
+       <td style="text-align:right">16.9817</td>
+       </tr>
+    <tr>
+      <td>sum of squares \(\sum {x_i^2} \) </td>
+       <td style="text-align:right">9,195.8574</td>
+       <td style="text-align:right">12,393.0952</td>
+       <td style="text-align:right">4,201.5039</td>
+       <td style="text-align:right">169,963.7484</td>
+       <td style="text-align:right">195,754.2049</td>
+       </tr>
+    <tr>
+      <td>sample variance \({s^2}\)</td>
+       <td style="text-align:right">0.4285</td>
+       <td style="text-align:right">0.3485</td>
+       <td style="text-align:right">0.0708</td>
+       <td style="text-align:right">9.9969</td>
+       <td style="text-align:right">196.6489</td>
+       </tr>
+    <tr>
+      <td>sample std. dev. \(s\)</td>
+       <td style="text-align:right">0.6546</td>
+       <td style="text-align:right">0.5903</td>
+       <td style="text-align:right">0.2662</td>
+       <td style="text-align:right">3.1618</td>
+       <td style="text-align:right">14.0232</td>
+       </tr>
+    <tr>
+      <td>std. dev. of mean \({SE_{\bar x}}\)</td>
+       <td style="text-align:right">0.0651</td>
+       <td style="text-align:right">0.0587</td>
+       <td style="text-align:right">0.0265</td>
+       <td style="text-align:right">0.3146</td>
+       <td style="text-align:right">0.6977</td>
+       </tr>
+  </tbody>
+</table>
+<br/><p/>
+<h3><i>One-way ANOVA of your \(k\)=4 independent treatments: </i></h3>
+<table border="1">
+  <thead>
+    <tr>
+      <td style="text-align:center">source</td>
+      <td style="text-align:center">sum of <br />
+        squares SS</td>
+      <td style="text-align:center">degrees of <br />
+        freedom \(\nu\)</td>
+      <td style="text-align:center">mean square <br />
+        MS</td>
+      <td style="text-align:center">F statistic</td>
+      <td style="text-align:center">p-value </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>treatment</td>
+      <td style="text-align:right">78,165.0209</td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:right">26,055.0070</td>
+      <td style="text-align:right">9,610.2368</td>
+       <td style="text-align:right">1.1102e-16</td>
+
+    </tr>
+    <tr>
+      <td>error</td>
+      <td style="text-align:right">1,084.4689</td>
+      <td style="text-align:right">400</td>
+      <td style="text-align:right">2.7112</td>
+    </tr>
+    <tr>
+      <td>total</td>
+      <td style="text-align:right">79,249.4898</td>
+      <td style="text-align:right">403</td>
+    </tr>
+  </tbody>
+</table>
+<br/><p/>
+<h4>Conclusion from Anova: </h4>
+<p> The p-value corresponing to the F-statistic of one-way ANOVA is
+lower than 0.05, suggesting that the one or more treatments are significantly
+different. The Tukey HSD test, Scheffé, Bonferroni and Holm multiple comparison
+tests follow. These post-hoc tests would likely identify which of the pairs of
+treatments are significantly differerent from each other. </p>
+
+<br/><p/>
+<h3><i>Tukey HSD Test: </i></h3>
+<p>The p-value corrresponing to the F-statistic of one-way ANOVA is lower than
+ 0.01  which
+strongly suggests that one or more pairs of treatments are significantly
+different. You have \(k=4\) treatments, for which we shall apply
+Tukey's HSD test to each of the 6 pairs to
+pinpoint which of them exhibits statistially significant difference.
+</p>
+<p>We first establish the critical value of the Tukey-Kramer HSD \(Q\) statistic
+based on the \(k=4\) treatments and \(\nu=400\)
+degrees of freedom for the error term, for significance level \(\alpha\)= 0.01
+and 0.05 (p-values) in the Studentized Range distribution. We obtain these
+ctitical values for \(Q\), for \(\alpha\) of 0.01 and 0.05, as
+\(Q_{critical}^{\alpha=0.01,k=4,\nu=400}\) = 4.4308 and
+\(Q_{critical}^{\alpha=0.05,k=4,\nu=400 }\) = 3.6486, respectively. These critical values may
+be verified at several published tables of the inverse Studentized Range
+distribution, such as <a
+href="http://www.stat.duke.edu/courses/Spring98/sta110c/qtable.html">this table
+at Duke University</a>.
+</p>
+<p>Next, we establish a Tukey test statistic from our sample columns to compare
+with the appropriate critical value of the studentized range distribution. We
+take the Tukey-Kramer confidence limits as documented in the <a
+href="http://www.itl.nist.gov/div898/handbook/prc/section4/prc471.htm">NIST
+Engineering Statistics Handbook </a> and make simplyfying algebraic
+transformation. We calculate a parameter for each pair of columns being
+compared, which we loosely call here as the Tukey-Kramer HSD \(Q\)-statistic,
+or simply the Tukey HSD \(Q\)-statistic, as: $$ Q_{i, \,j} = \frac{\lvert
+\bar{x}_{i} - \bar{x}_{j} \rvert }{s_{i, \,j}} $$ where the denominator in the
+above expression is: $$ \,\, {s_{i, \,j}} = \frac{\hat{\sigma}_\epsilon
+}{\sqrt{H_{i, \, j} } } \,\,\,\,\, i, \, j = 1, \, \ldots, \, k; \,\, i \ne j
+\, . $$
+</p>
+<p>The quantity \({H_{i, \, j}}\) is the <i><a
+href="http://en.wikipedia.org/wiki/Harmonic_mean">harmonic mean</a></i> of the
+number of observations in columns labeled \(i\) and \(j\). Note that when the
+sample sizes in the columns are equal, then their harmonic mean is simply the
+common sample size. When the sample sizes of columns in a pair being compared
+are different, the harmonic mean lies somewhere in-between the two sample
+sizes. The relvant harmonic mean is required for applying the Tukey-Kramer
+procedure for columns with unequal sample sizes. The quantity
+\(\hat{\sigma}_\epsilon\) = 1.6466 is
+the square root of the Mean Square Error = 2.7112 determined in the precursor one-way ANOVA procedure. Note that
+\(\hat{\sigma}_\epsilon \) is same across all pairs being compared. The only
+factor that varies across pairs in the computation of \({s_{i, \,j}} = \frac{
+\hat{\sigma}_\epsilon }{\sqrt{H_{i, \, j}} } \) is the denominator, which is
+the harmonic mean of the sample sizes being compared.
+</p>
+<p>The test of whether the NIST Tukey-Kramer confidence interval includes zero is
+equivalent to evaluating whether \(Q_{i, \,j} &gt; Q_{critical}\), the latter
+determined according to the desired level of significance \(\alpha\) (p-value),
+the number of treatments \(k\) and the degrees of freedom for error \(\nu\), as
+described above. </p>
+<p/>
+<h3><i>post-hoc Tukey HSD Test Calculator results: </i></h3>
+<p>\(k=4\) treatments <br />
+degrees of freedom for the error term \(\nu=400\) <br />
+Critical values of the Studentized Range \(Q\) statistic: </p>
+
+<p>\(Q_{critical}^{\alpha=0.01,k=4, \nu=400 }\) = 4.4308
+\(Q_{critical}^{\alpha=0.05,k=4, \nu=400 }\) = 3.6486 </p>
+
+<p>We present below color coded results (red for insignificant, green for
+significant) of evaluating whether \(Q_{i,j} &gt; Q_{critical}\) for all
+relevant pairs of treatments. In addition, we also present the significance
+(p-value) of the observed \(Q\)-statistic \(Q_{i,j}\). The algorithm used here
+to calculate the critical values of the studentized range distribution, as well
+as p-values corresponding to an observed value of \(Q_{i,j}\), is that of <a
+href="http://www.sciencedirect.com/science/article/pii/S016794739900002X">Gleason
+(1999)</a>. This is an improvement over the <a
+href="http://www.tandfonline.com/doi/abs/10.1080/00949658808811082">Copenhaver-Holland
+(1988) algorithm</a> deployed in <a
+href="http://stat.ethz.ch/R-manual/R-patched/library/stats/html/Tukey.html">the
+R statistical package</a>. </p>
+<p/>
+<h4>Tukey HSD results</h4>
+<table border="1">
+    <thead>
+    <tr>
+      <td>treatments <br/>
+        pair </td>
+      <td>Tukey HSD <br/>
+        Q statistic</td>
+      <td>Tukey HSD <br/> p-value</td>
+      <td>Tukey HSD <br/> inferfence </td>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+      <td>A vs B</td>
+      <td style="text-align:right">9.4113</td>
+
+		 <td style="text-align:right ; background-color:limegreen">
+			 0.0010053
+      		 </td>
+
+
+
+
+	 <td style="background-color:limegreen">  **  p&lt;0.01</td>
+
+
+    </tr>
+
+    <tr>
+      <td>A vs C</td>
+      <td style="text-align:right">18.7706</td>
+
+		 <td style="text-align:right ; background-color:limegreen">
+			 0.0010053
+      		 </td>
+
+
+
+
+	 <td style="background-color:limegreen">  **  p&lt;0.01</td>
+
+
+    </tr>
+
+    <tr>
+      <td>A vs D</td>
+      <td style="text-align:right">191.5389</td>
+
+		 <td style="text-align:right ; background-color:limegreen">
+			 0.0010053
+      		 </td>
+
+
+
+
+	 <td style="background-color:limegreen">  **  p&lt;0.01</td>
+
+
+    </tr>
+
+    <tr>
+      <td>B vs C</td>
+      <td style="text-align:right">28.1819</td>
+
+		 <td style="text-align:right ; background-color:limegreen">
+			 0.0010053
+      		 </td>
+
+
+
+
+	 <td style="background-color:limegreen">  **  p&lt;0.01</td>
+
+
+    </tr>
+
+    <tr>
+      <td>B vs D</td>
+      <td style="text-align:right">182.1276</td>
+
+		 <td style="text-align:right ; background-color:limegreen">
+			 0.0010053
+      		 </td>
+
+
+
+
+	 <td style="background-color:limegreen">  **  p&lt;0.01</td>
+
+
+    </tr>
+
+    <tr>
+      <td>C vs D</td>
+      <td style="text-align:right">210.3095</td>
+
+		 <td style="text-align:right ; background-color:limegreen">
+			 0.0010053
+      		 </td>
+
+
+
+
+	 <td style="background-color:limegreen">  **  p&lt;0.01</td>
+
+
+    </tr>
+
+    </tbody>
+</table>
+<br/> <p/><p/>
+<h3><i>Scheffé multiple comparison</i></h3>
+<p>We define a statistic named \(T\) as the ratio of unsigned contrast mean to
+contrast standard error, as explained in the <a href="http://www.itl.nist.gov/div898/handbook/prc/section4/prc472.htm">NIST
+Engineering Statistics Handbook page for Scheffe's method </a>. It can be show
+that for contrasts that are treatment pairs \((i,j)\) with unit coefficents,
+<br />
+$$ T_{i,j} = \frac{Q_{i,j}}{\sqrt{2}} $$ where \(Q_{i,j}\) is the
+\(Q\)-statistic that was created for the Tukey HSD test. This \(T\)-statistic
+has interesting properties. </p>
+
+<p>The same <a
+href="http://www.itl.nist.gov/div898/handbook/prc/section4/prc472.htm">NIST
+Engineering Statistics Handbook page for Scheffe's method </a> provides a
+formula which directly leads to the Scheffé p-value corresponding to an
+observed value of \(T\) as: <br />
+$$ 1 - F \left( \frac{T^2 }{k-1}, k-1, \nu \right) $$ where \(F \left( \right) \) is the
+cumulative \(F\) distribution with its two degrees of freedom parameters
+\(k-1\) and \(\nu\). Note that \(k\) is the number of treatments and \(\nu\) is
+the degrees of freedom of error that were established earlier.</p>
+
+<p>The Scheffé p-value of the observed \(T\)-statistic \(T_{i,j}\) is shown
+below for all relevant pairs of treatments, along with color coded Scheffé
+inference (red for insignificant, green for significant) based on the p-value.
+</p>
+<p/>
+<h4>Scheffé results</h4>
+<table border="1">
+    <tr>
+      <td>treatments <br />
+        pair </td>
+      <td>Scheffé <br />
+        \(T\)-statistic</td>
+      <td>Scheffé <br /> p-value</td>
+      <td>Scheffé <br /> inferfence </td>
+    </tr>
+
+    <tr>
+      <td>A vs B</td>
+      <td style="text-align:right">6.6548</td>
+        </td>
+      <td style="text-align:right ; background-color:limegreen">   3.9083e-09   </td>
+      <td style="background-color:limegreen">  **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>A vs C</td>
+      <td style="text-align:right">13.2728</td>
+        </td>
+      <td style="text-align:right ; background-color:limegreen">   1.1102e-16   </td>
+      <td style="background-color:limegreen">  **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>A vs D</td>
+      <td style="text-align:right">135.4385</td>
+        </td>
+      <td style="text-align:right ; background-color:limegreen">   1.1102e-16   </td>
+      <td style="background-color:limegreen">  **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>B vs C</td>
+      <td style="text-align:right">19.9276</td>
+        </td>
+      <td style="text-align:right ; background-color:limegreen">   1.1102e-16   </td>
+      <td style="background-color:limegreen">  **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>B vs D</td>
+      <td style="text-align:right">128.7837</td>
+        </td>
+      <td style="text-align:right ; background-color:limegreen">   1.1102e-16   </td>
+      <td style="background-color:limegreen">  **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>C vs D</td>
+      <td style="text-align:right">148.7113</td>
+        </td>
+      <td style="text-align:right ; background-color:limegreen">   1.1102e-16   </td>
+      <td style="background-color:limegreen">  **  p&lt;0.01</td>
+    </tr>
+
+</table>
+<br/><p/><p/>
+<h3><i>Bonferroni and Holm multiple comparison</i></h3>
+<p>The same statistic \(T\) for the Scheffé method, along with the number of
+contrasts (pairs) \(q\) being simultaneously compared, leads to the Bonferroni
+formula. The <a
+href="http://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm">NIST
+Engineering Statistics Handbook page for Bonferroni method </a> provides a
+formula which directly leads to the Bonferroni p-value corresponding to an
+observed value of \(T\) in the context of simultaneous comparison of \(q\)
+contrasts as: <br />
+Bonferroni p-value: &nbsp; &nbsp; \(P^{Bonferroni}_{i,j} = P^{unadjusted}_{i,j}q \)
+&nbsp; &nbsp; where $$ P^{unadjusted}_{i,j} = \left[ 1 - t \left( \frac{T^2 }{k-1}, \nu \right) \right] 2  $$ <br/> and where \(t \left( \right) \)
+is the cumulative Student's \(t\) distribution with its degree of freedom parameter
+\(\nu\). Note that \(\nu\) is the degrees of freedom of error that were
+established earlier. Also note that the p-value of Bonferroni simultaneous
+comparison is directly proportional to \(q\), the number of contrasts (pairs)
+being simultaneously compared. </p>
+<p>The Holm procedure described in <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380484/"> Aickin and Gensler (1996) review paper </a> requires sorting the \( P^{unadjusted}_{i,j} \) as above in <i>ascending</i> order and determining the sort rank \( R_{i,j} \) of each unique pair \( \left ( i,j \right ) \).  These sort ranks run from 1 through \( q \).  The Holm p-value for comparing a given pair \( \left ( i,j \right ) \) in the context of multiple comparison of \( q \) such pairs simultaneously is: <br/> <br/>
+Holm p-value: &nbsp; &nbsp; \(P^{Holm}_{i,j} = P^{unadjusted}_{i,j} \left( q - R_{i,j} + 1 \right) \)
+</p>
+<p>In this first combined Bonferroni and Holm table below, we consider all possible contrasts
+(pairs) for simultaneous comparion, thus \(q\)=6. The Bonferoni and Holm p-values of the observed \(T\)-statistic \(T_{i,j}\) for all
+relevant \(q\)=6 pairs of treatments is shown
+below, along with color coded Bonferroni and Holm inferences (red for insignificant,
+green for significant) based on the p-value. </p>
+<h4>Bonferroni and Holm results: all pairs simultaineously compared</h4>
+<table border="1">
+    <tr>
+      <td>treatments <br />
+        pair </td>
+      <td>Bonferroni <br />
+        and Holm <br/>
+        \(T\)-statistic</td>
+      <td>Bonferroni <br /> p-value</td>
+      <td>Bonferroni <br /> inferfence </td>
+      <td>Holm <br /> p-value</td>
+      <td>Holm <br /> inferfence </td>
+    </tr>
+
+    <tr>
+      <td>A vs B</td>
+      <td style="text-align:right">6.6548</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	5.6192e-10
+
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	9.3653e-11
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>A vs C</td>
+      <td style="text-align:right">13.2728</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>A vs D</td>
+      <td style="text-align:right">135.4385</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>B vs C</td>
+      <td style="text-align:right">19.9276</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>B vs D</td>
+      <td style="text-align:right">128.7837</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+    </tr>
+
+    <tr>
+      <td>C vs D</td>
+      <td style="text-align:right">148.7113</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+
+
+
+		<td style="text-align:right ; background-color:limegreen">
+
+
+
+	0.0000e+00
+	</td>
+
+
+		<td style="background-color:limegreen">
+
+
+      **  p&lt;0.01</td>
+    </tr>
+
+</table>
+<br/><p/><p/>
+<p>In this second Bonferroni and Holm table below, we consider a subset of contrasts
+(pairs) for simultaneous comparion, of only pairs relative to treatment A. Such
+a situation may be relevant when treatment A is the control, and the
+experimenter is interested only in differences of treatments relative to
+control, thus \(q\)=3. The Bonferoni and Holm p-values of the observed
+\(T\)-statistic \(T_{i,j}\) for \(q\)=3 relevant pairs of
+treatments, along with color coded Bonferroni inference (red for insignificant,
+green for significant) based on the p-value.</p>
+
+<h4>Bonferroni and Holm results: only pairs relative to A simultaineously compared</h4>
+
+<table border="1">
+    <tr>
+      <td>treatments <br/>
+        pair </td>
+      <td>Bonferroni <br/>
+        and Holm <br/>
+        \(T\)-statistic</td>
+      <td>Bonferroni <br /> p-value</td>
+      <td>Bonferroni <br /> inferfence </td>
+      <td>Holm <br /> p-value</td>
+      <td>Holm <br /> inferfence </td>
+    </tr>
+
+    <tr>
+      <td>A vs B</td>
+      <td style="text-align:right">6.6548</td>
+
+
+			<td style="text-align:right ; background-color:limegreen">
+			 2.8096e-10
+			 </td>
+
+
+
+
+	 <td style="background-color:limegreen"> **  p&lt;0.01 </td>
+
+
+
+
+
+			<td style="text-align:right ; background-color:limegreen">
+			 9.3653e-11
+			 </td>
+
+
+
+	 <td style="background-color:limegreen"> **  p&lt;0.01 </td>
+
+
+
+    </tr>
+
+    <tr>
+      <td>A vs C</td>
+      <td style="text-align:right">13.2728</td>
+
+
+			<td style="text-align:right ; background-color:limegreen">
+			 0.0000e+00
+			 </td>
+
+
+
+
+	 <td style="background-color:limegreen"> **  p&lt;0.01 </td>
+
+
+
+
+
+			<td style="text-align:right ; background-color:limegreen">
+			 0.0000e+00
+			 </td>
+
+
+
+	 <td style="background-color:limegreen"> **  p&lt;0.01 </td>
+
+
+
+    </tr>
+
+    <tr>
+      <td>A vs D</td>
+      <td style="text-align:right">135.4385</td>
+
+
+			<td style="text-align:right ; background-color:limegreen">
+			 0.0000e+00
+			 </td>
+
+
+
+
+	 <td style="background-color:limegreen"> **  p&lt;0.01 </td>
+
+
+
+
+
+			<td style="text-align:right ; background-color:limegreen">
+			 0.0000e+00
+			 </td>
+
+
+
+	 <td style="background-color:limegreen"> **  p&lt;0.01 </td>
+
+
+
+    </tr>
+
+</table>
+<p><br />
+</p>
+
+<h3>How to repeat &amp; verify post-hoc Tukey HSD calculation by hand in
+Microsoft Excel </h3>
+
+<p>Microsoft Excel lacks built-in functions relating to the studentized range
+distribution, so even though it calculates the Mean Square Error in one-way
+ANOVA, whose square root is \(\hat{\sigma}_\epsilon \), and is aware of all the
+sample sizes and degrees of freedom, it is unable to conduct the next step of
+post-hoc Tukey HSD comparison of treatments. To manually conduct post-hoc Tukey
+HSD test calculation, you would take the mean squared error from the Excel's
+one-way ANOVA output, then take its square root to determine
+\(\hat{\sigma}_\epsilon \). You would then divide this \(\hat{\sigma}_\epsilon
+\) by the square root of \(H_{i, \, j}\), the harmonic mean of the relevant
+sample columns being compared, resulting in \(s_{i, \,j}\), for each pair of
+columns \(\left( i,j \right) \). Excel has a <a
+href="http://office.microsoft.com/en-us/excel-help/harmean-HP005209109.aspx">built-in
+function HARMEAN(n1, n2,...)</a> that calculates the harmonic mean. With these
+on hand, you would determine \( Q_{i, \,j} = \frac{\lvert \bar{x}_{i} -
+\bar{x}_{j} \rvert }{s_{i, \,j}} \). Microsoft Excel provides the relevant
+sample column averages (means) to calculate the numerator. You would finally
+compare whether \( Q_{i, \,j} &gt; Q_{critical}\). For this comparison, you
+would obtain the critical values for the appropriate number of degrees of
+freedom of error (shown in Microsoft Excel) and the number of treatments
+(columns) from tables of the (inverse) studentized range distribution widely
+available on the web. </p>
+
+<p></p>
+
+<h3>How to repeat &amp; verify post-hoc Scheffé, Bonferroni and Holm calculations by
+hand in Microsoft Excel</h3>
+
+<p>For Scheffé, Bonferroni and Holm steps, calculate the \(T\)-statistic
+\(T_{i, \,j}\) for all pairs by taking \(Q_{i, \,j}\) from the earlier Tukey
+HSD step and dividing it by \(\sqrt{2}\). Calculate the Scheffé p-value of the
+observed \(T\)-statistic by using Excel's <a
+href="https://support.office.com/en-us/article/F-DIST-function-75cc708b-082d-442c-bc2e-f326c3095dbc">built-in
+formula for the \(F\) distribution </a> which has the form F.DIST
+(x,deg_freedom1,deg_freedom2,cumulative). Set its first argument x as
+\(\frac{T^2}{k-1}\). The second and third arguments are \(k-1\) and \(\nu\). The
+fourth argument is set to 1. The Scheffé p-value is calculated in Excel by the
+formula as <span
+style="font-family:'Courier New', Courier, monospace;white-space:pre">1-F.DIST(x,\(k-1\),\(\nu\),1)</span>.
+</p>
+
+<p>For the Bonferroni and Holm comparison, take the same \(T\)-statistic \(T_{i,j}\) that was
+determined for the Scheffé step above. Determine \(q\), the number of pairs
+that are being simultaneously compared. Calculate the Bonferroni p-value of the
+observed \(T\)-statistic by using Excel's <a
+href="https://support.office.com/en-us/article/T-DIST-function-ee0e61dd-d30f-40a0-a544-673c86e89a79">built-in
+formula for the t-distribution T.DIST(x,deg_freedom, cumulative)</a>.
+The unadusted p-value \( P^{unadjusted} \) is calculated in Excel by the formula as <span
+style="font-family:'Courier New', Courier, monospace;white-space:pre">(1-T.DIST(\(T\),\(\nu\),TRUE))*2</span>.
+The Bonferroni p-value is calculated for each pair \( \left( i,j \right) \) as  \( P^{Bonferroni} = P^{unadjusted} q\).
+The \( q \)-element array of the \( P^{unadjusted}_{i,j} \) is sorted in <i>ascending</i> order to determine the sort rank \( R_{i,j} \) for each given pair \( \left( i,j \right) \). These sort ranks run from 1 through \( q \).  The Holm p-value is calculated for each pair \( \left( i,j \right) \) as  \( P^{Holm}_{i,j} = P^{unadjusted}_{i,j} \left( q -R_{i,j} + 1 \right) \) .
+</p>
+
+<p></p>
+
+<h2>R code and Tutorial for conducting Tukey HSD, Scheffé, Bonferroni and Holm
+methods</h2>
+
+<p>A tutorial for the solving the demo example using the free open-source
+academic-research-grade <a href="http://www.r-project.org/">R statistical
+package</a> together with complete <a href="/OneWay_Anova_with_TukeyHSD/_Rcode_tutorial/">R code and output is provided
+here</a>. The output of the demo example in this web calculator for all three
+methods of multiple comparison are fully reproduced in R, thus further
+establishing the validity of the formula and methodology discussed earlier. </p>
+<p/>
+<p>Attribution: <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> 2016 Navendu Vasavada <br/>
+navendu (dot) vasavada (at) alumni (dot) upenn (dot) edu</p>
+
+<!-- end border --></div>
+<!-- end .content --></div>
+<!-- end .container --></div>
+
+</body>
+</html>

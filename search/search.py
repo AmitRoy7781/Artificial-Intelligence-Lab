@@ -226,7 +226,6 @@ def uniformCostSearch(problem):
 
         parentState = queue.pop()
 
-
         if problem.isGoalState(parentState):
             goalState = parentState
             break
@@ -241,12 +240,12 @@ def uniformCostSearch(problem):
                 parent[currentState] = [parentState]
                 parent[currentState] += currentStateInfo
                 queue.push(currentState,distance[currentState])
-            elif(distance[currentState] > distance[parentState] + currentStateCost):
+
+            elif distance[currentState] > distance[parentState] + currentStateCost:
                 distance[currentState] = distance[parentState] + currentStateCost
                 parent[currentState] = [parentState]
                 parent[currentState] += currentStateInfo
                 queue.push(currentState, distance[currentState])
-
     moves = []
     while True:
         if goalState is startState:
@@ -443,3 +442,45 @@ bfs = breadthFirstSearch
 dfs = depthFirstSearch
 astar = aStarSearch
 ucs = uniformCostSearch
+ids = iterativeDeepeningSearch
+rbfs = greedyBestFirstSearch
+
+
+
+#dfs:
+# python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs -z .5
+# python pacman.py -l mediumMaze -p SearchAgent -a fn=dfs -z .5
+# python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=dfs -z .5
+
+#bfs
+#python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs -z .5
+#python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs -z .5
+#python pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5
+
+#ucs
+#python pacman.py -l tinyMaze -p SearchAgent -a fn=ucs -z .5
+#python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs -z .5
+#python pacman.py -l bigMaze -p SearchAgent -a fn=ucs -z .5
+
+#ids
+#python pacman.py -l tinyMaze -p SearchAgent -a fn=ids -z .5
+#python pacman.py -l mediumMaze -p SearchAgent -a fn=ids -z .5
+#python pacman.py -l bigMaze -p SearchAgent -a fn=ids -z .5
+
+#astar
+#python pacman.py -l tinyMaze -p SearchAgent -a fn=astar -z .5
+#python pacman.py -l mediumMaze -p SearchAgent -a fn=astar -z .5
+#python pacman.py -l bigMaze -p SearchAgent -a fn=astar -z .5
+
+#rbfs
+#python pacman.py -l tinyMaze -p SearchAgent -a fn=rbfs -z .5
+#python pacman.py -l mediumMaze -p SearchAgent -a fn=rbfs -z .5
+#python pacman.py -l bigMaze -p SearchAgent -a fn=rbfs -z .5
+
+
+
+
+
+
+
+
